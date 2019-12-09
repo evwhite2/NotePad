@@ -1,8 +1,6 @@
 var express = require("express");
 var path = require("path");
-var fs = require("fs");
 var journal = require("../../../db/db.json");
-var noteObj= {};
 
 var app = express();
 const PORT = process.env.PORT || 3000;
@@ -49,6 +47,8 @@ app.delete("/api/notes/:id", function(req, res){
   });
 
   journal.entries.splice(selectedDel.id, 1);
+
+  res.send("Entry Deleted");
 });
 
 
