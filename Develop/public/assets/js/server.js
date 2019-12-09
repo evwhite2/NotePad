@@ -5,7 +5,8 @@ var journal = require("../../../db/db.json");
 var noteObj= {};
 
 var app = express();
-var PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -41,13 +42,11 @@ app.post("/api/notes", function(req, res){
     newEntry = req.body;
     noteObj.entries.push(newEntry);
 
-    //adding id to each entry
+    //adding unique id to each entry
     noteObj.entries.forEach((entry,index) => {
       Object.assign(entry, {"id": index});
     });
-    
-    console.log(JSON.stringify(noteObj));
-    
+  
     //rewriting JSON DB file with new entry added
     fs.writeFile("../../../db/db.json", JSON.stringify(noteObj),(error, success)=>{
       if(error) {
@@ -65,7 +64,9 @@ app.get("/api/notes", function(req, res){
    res.send(journal)
 });
 
-// app.delete("")
+app.delete("/api/notes", function(req, res){
+
+})
 
 
 //listen on server
