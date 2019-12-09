@@ -42,10 +42,14 @@ app.post("/api/notes", function(req, res){
 
 });
 
+app.delete("/api/notes/:id", function(req, res){
+  const reqDeleteId = req.params.id;
+  let selectedDel = journal.entries.filter(entry =>{
+    return entry.id == reqDeleteId
+  });
 
-
-// app.delete("/api/notes", function(req, res){
-// })
+  journal.entries.splice(selectedDel.id, 1);
+});
 
 
 //listen on server
