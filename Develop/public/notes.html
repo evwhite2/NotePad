@@ -26,15 +26,15 @@
   </nav>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-4 list-container">
+      <div class="col-8 list-container">
         <div class="card">
           <ul class="list-group">
           </ul>
         </div>
       </div>
-      <div class="col-8">
-        <input class="note-title" placeholder="Note Title" maxlength="28" type="text">
-        <textarea class="note-textarea" placeholder="Note Text"></textarea>
+      <div class="col-4">
+        <input class="note-title" placeholder="Note Title" maxlength="28" type="text" style="width:200px">
+        <textarea class="note-textarea" placeholder="Note Text" style="height:200px; width:200px"></textarea>
       </div>
     </div>
   </div>
@@ -51,6 +51,7 @@ var $noteList = $(".list-container .list-group");
 
 
 console.log("page loaded...")
+
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
 
@@ -153,7 +154,7 @@ var handleRenderSaveBtn = function() {
 // Render's the list of note titles
 var renderNoteList = function(notes) {
   $noteList.empty();
-
+  console.log(notes)
   var noteListItems = [];
 
   for (var i = 0; i < notes.length; i++) {
@@ -161,11 +162,13 @@ var renderNoteList = function(notes) {
 
     var $li = $("<li class='list-group-item'>").data(note);
     var $span = $("<span>").text(note.title);
+    var $spanBod= $("<span>").text(note.text);
     var $delBtn = $(
       "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
     );
 
     $li.append($span, $delBtn);
+    $li.append("<br>", $spanBod);
     noteListItems.push($li);
   }
 
@@ -175,7 +178,7 @@ var renderNoteList = function(notes) {
 // Gets notes from the db and renders them to the sidebar
 var getAndRenderNotes = function() {
   return getNotes().then(function(data) {
-    renderNoteList(data);
+    renderNoteList(data.entries);
   });
 };
 
