@@ -22,51 +22,30 @@ app.get("/notes", function(req, res){
 });
 
 
-//post
-app.post("/api/notes", function(req, res){
-  
-  console.log(`New request sent to API ${JSON.stringify(req.body)}`);
-
-  //reading existing data  
-  fs.readFile(path.join(__dirname, "../../../db/db.json"), "utf8", (err, jsonString)=>{
-    if (err){
-      console.log(`Cannot read exisitng JSON file: ${err}`);
-    }try{
-      let apiNotes = JSON.parse(jsonString);
-      noteObj = apiNotes;
-    }catch(err){
-      console.log(`Error reading existing notes: ${err}`);
-    }
-  
-    //adding new entry to journal
-    newEntry = req.body;
-    noteObj.entries.push(newEntry);
-
-    //adding unique id to each entry
-    noteObj.entries.forEach((entry,index) => {
-      Object.assign(entry, {"id": index});
-    });
-  
-    //rewriting JSON DB file with new entry added
-    fs.writeFile("../../../db/db.json", JSON.stringify(noteObj),(error, success)=>{
-      if(error) {
-        console.log(`Error writing to api: ${error}`);
-      }console.log(`Entry added to API: Title:${newEntry.title}, Body: ${newEntry.text}`);
-    });
-  });
-
-  
-  res.send("Content Added");
-});
-
-//api routes
+//API Routes
 app.get("/api/notes", function(req, res){
-   res.send(journal)
+  res.json(journal);
 });
 
-app.delete("/api/notes", function(req, res){
 
-})
+app.post("/api/notes", function(req, res){
+  newEntry = req.body;
+  journal.entries.push(newEntry);
+  
+  //adding unique id to each entry
+  journal.entries.forEach((entry,index) => {
+    Object.assign(entry, {"id": index});
+    });
+  
+  
+  return res.send(`Content Added: ${newEntry.title}`);
+
+});
+
+
+
+// app.delete("/api/notes", function(req, res){
+// })
 
 
 //listen on server
