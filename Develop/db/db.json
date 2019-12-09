@@ -1,35 +1,3 @@
 {
-    "entries": [{
-        "title": "November 30",
-        "text": "Send gift to Laurie",
-        "id": 0
-    }, {
-        "title": "December 1",
-        "text": "Dinner Party",
-        "id": 1
-    }, {
-        "title": "December 2",
-        "text": "Parade in Park",
-        "id": 2
-    }, {
-        "title": "December 10",
-        "text": "Food Drive",
-        "id": 3
-    }, {
-        "title": "December 10",
-        "text": "Holiday Party",
-        "id": 4
-    }, {
-        "title": "Jan 1",
-        "text": "Make resolutions",
-        "id": 5
-    }, {
-        "title": "Jan 2",
-        "text": "New trainee",
-        "id": 6
-    }, {
-        "title": "January 4",
-        "text": "Project 4 due",
-        "id": 7
-    }]
+    "entries": []
 }
