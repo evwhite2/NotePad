@@ -24,7 +24,7 @@ app.get("/notes", function(req, res){
 //post
 app.post("/api/notes", function(req, res){
   
-  console.log(`New request sent to API ${req.body}`);
+  console.log(`New request sent to API ${JSON.stringify(req.body)}`);
 
   //reading existing data  
   fs.readFile(path.join(__dirname, "../../../db/db.json"), "utf8", (err, jsonString)=>{
@@ -40,6 +40,13 @@ app.post("/api/notes", function(req, res){
     //adding new entry to journal
     newEntry = req.body;
     noteObj.entries.push(newEntry);
+
+    //adding id to each entry
+    noteObj.entries.forEach((entry,index) => {
+      Object.assign(entry, {"id": index});
+    });
+    
+    console.log(JSON.stringify(noteObj));
     
     //rewriting JSON DB file with new entry added
     fs.writeFile("../../../db/db.json", JSON.stringify(noteObj),(error, success)=>{
@@ -57,6 +64,8 @@ app.post("/api/notes", function(req, res){
 app.get("/api/notes", function(req, res){
    res.send(journal)
 });
+
+// app.delete("")
 
 
 //listen on server
