@@ -4,6 +4,10 @@ html, body {
   padding: 0;
 }
 
+.purp{
+  background-color: blueviolet;
+}
+
 .save-note {
   display: none;
 }

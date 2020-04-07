@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark" style="background-color: blueviolet;">
     <a class="navbar-brand" href="/">NotePad
     </a>
     <div class="icons">
@@ -26,15 +26,19 @@
   </nav>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-8 list-container">
+
+      <div class="col list-container">
         <div class="card">
           <ul class="list-group">
           </ul>
+          <input class="note-title" placeholder="Note Title" maxlength="28" type="text" style="width: 100%">
+          <textarea class="note-textarea" placeholder="Note Text" style="height:100px; width:100%; padding:3px"></textarea>
         </div>
-      </div>
-      <div class="col-4">
-        <input class="note-title" placeholder="Note Title" maxlength="28" type="text" style="width:200px">
-        <textarea class="note-textarea" placeholder="Note Text" style="height:200px; width:200px"></textarea>
+      <!-- </div> -->
+
+      <!-- <div class="col-4"> -->
+        <!-- <input class="note-title" placeholder="Note Title" maxlength="28" type="text" style="width:200px">
+        <textarea class="note-textarea" placeholder="Note Text" style="height:200px; width:200px"></textarea> -->
       </div>
     </div>
   </div>
